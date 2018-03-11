@@ -5,6 +5,7 @@ import lombok.Setter;
 import lombok.ToString;
 
 import java.util.List;
+import java.util.Map;
 
 @Getter
 @Setter
@@ -16,7 +17,7 @@ public class Result {
     private List<String> contexts;
     private Fulfillment fulfillment;
     private Metadata metadata;
-    private Parameters parameters;
+    private Map<String, Object> parameters;
     private String resolvedQuery;
     private Integer score;
     private String source;
