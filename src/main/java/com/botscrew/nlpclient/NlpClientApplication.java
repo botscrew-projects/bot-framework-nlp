@@ -2,12 +2,9 @@ package com.botscrew.nlpclient;
 
 import com.botscrew.nlpclient.provider.dialogflow.v1.DialogFlowClient;
 import com.botscrew.nlpclient.provider.dialogflow.v1.model.Response;
-import com.botscrew.nlpclient.provider.dialogflow.v1.model.parameter.Age;
 import org.springframework.boot.SpringApplication;
 import org.springframework.boot.autoconfigure.SpringBootApplication;
 import org.springframework.context.ConfigurableApplicationContext;
-
-import java.util.Map;
 
 @SpringBootApplication
 public class NlpClientApplication {

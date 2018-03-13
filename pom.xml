@@ -28,18 +28,28 @@
 		<dependency>
 			<groupId>org.springframework.boot</groupId>
 			<artifactId>spring-boot-starter-web</artifactId>
+			<scope>provided</scope>
 		</dependency>
+
+		<dependency>
+			<groupId>ai.api</groupId>
+			<artifactId>libai</artifactId>
+			<version>1.6.12</version>
+			<scope>compile</scope>
+		</dependency>
+
 
 		<dependency>
 			<groupId>com.botscrew</groupId>
 			<artifactId>bot-framework-spring-boot-starter</artifactId>
-			<version>1.0.0-RC1</version>
+			<version>1.0.0-SNAPSHOT-2</version>
 		</dependency>
 
 		<dependency>
 			<groupId>org.springframework.boot</groupId>
 			<artifactId>spring-boot-configuration-processor</artifactId>
 			<optional>true</optional>
+			<scope>compile</scope>
 		</dependency>
 		<dependency>
 			<groupId>org.projectlombok</groupId>
