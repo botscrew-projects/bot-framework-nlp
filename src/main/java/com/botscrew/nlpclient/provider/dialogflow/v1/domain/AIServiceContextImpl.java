@@ -1,7 +1,6 @@
 package com.botscrew.nlpclient.provider.dialogflow.v1.domain;
 
 import ai.api.AIServiceContext;
-import ai.api.RequestExtras;
 
 import java.util.TimeZone;
 

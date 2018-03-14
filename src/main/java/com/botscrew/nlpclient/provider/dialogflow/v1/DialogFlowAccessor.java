@@ -1,22 +1,25 @@
 package com.botscrew.nlpclient.provider.dialogflow.v1;
 
-import ai.api.*;
+import ai.api.AIConfiguration;
+import ai.api.AIDataService;
+import ai.api.AIServiceContext;
+import ai.api.AIServiceException;
 import ai.api.model.AIRequest;
 import ai.api.model.AIResponse;
-import com.botscrew.nlpclient.NlpClientApplication;
 import com.botscrew.nlpclient.domain.NlpResponse;
-import com.botscrew.nlpclient.provider.NlpClient;
 import com.botscrew.nlpclient.provider.NlpEngineAccessor;
 import com.botscrew.nlpclient.provider.dialogflow.exception.DialogFlowException;
 import com.botscrew.nlpclient.provider.dialogflow.v1.domain.AIServiceContextImpl;
-
-import java.util.TimeZone;
 
 public class DialogFlowAccessor implements NlpEngineAccessor {
 
     private AIDataService dataService;
 
     public DialogFlowAccessor(String clientToken) {
+        if (clientToken == null || clientToken.isEmpty()) {
+            throw new DialogFlowException("Client access token is not present");
+        }
+
         AIConfiguration configuration = new AIConfiguration(clientToken);
         dataService = new AIDataService(configuration);
     }

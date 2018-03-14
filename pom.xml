@@ -5,7 +5,7 @@
 
 	<groupId>com.botscrew</groupId>
 	<artifactId>nlp-client</artifactId>
-	<version>0.0.1-SNAPSHOT</version>
+	<version>1.0.0-SNAPSHOT-1</version>
 	<packaging>jar</packaging>
 
 	<name>nlp-client</name>
@@ -43,6 +43,7 @@
 			<groupId>com.botscrew</groupId>
 			<artifactId>bot-framework-spring-boot-starter</artifactId>
 			<version>1.0.0-SNAPSHOT-2</version>
+			<scope>compile</scope>
 		</dependency>
 
 		<dependency>
@@ -54,7 +55,7 @@
 		<dependency>
 			<groupId>org.projectlombok</groupId>
 			<artifactId>lombok</artifactId>
-			<optional>true</optional>
+			<scope>compile</scope>
 		</dependency>
 		<dependency>
 			<groupId>org.springframework.boot</groupId>
@@ -62,15 +63,5 @@
 			<scope>test</scope>
 		</dependency>
 	</dependencies>
-
-	<build>
-		<plugins>
-			<plugin>
-				<groupId>org.springframework.boot</groupId>
-				<artifactId>spring-boot-maven-plugin</artifactId>
-			</plugin>
-		</plugins>
-	</build>
-
 
 </project>
