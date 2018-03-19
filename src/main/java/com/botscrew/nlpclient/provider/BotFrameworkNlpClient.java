@@ -1,6 +1,7 @@
 package com.botscrew.nlpclient.provider;
 
 import com.botscrew.botframework.container.IntentContainer;
+import com.botscrew.botframework.domain.SimpleArgumentKit;
 import com.botscrew.botframework.model.ChatUser;
 import com.botscrew.nlpclient.domain.NlpResponse;
 import lombok.RequiredArgsConstructor;
@@ -14,12 +15,12 @@ public class BotFrameworkNlpClient implements NlpClient {
     @Override
     public void query(ChatUser user, String query) {
         NlpResponse response = nlpEngineAccessor.query(query);
-        intentContainer.process(user, response.getIntent(), response.getParameters());
+        intentContainer.process(user, response.getIntent(), response.getArgumentKit());
     }
 
     @Override
     public void query(ChatUser user, String query, String sessionId) {
         NlpResponse response = nlpEngineAccessor.query(query, sessionId);
-        intentContainer.process(user, response.getIntent(), response.getParameters());
+        intentContainer.process(user, response.getIntent(), response.getArgumentKit());
     }
 }

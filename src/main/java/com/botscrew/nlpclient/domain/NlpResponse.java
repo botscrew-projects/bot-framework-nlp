@@ -1,5 +1,7 @@
 package com.botscrew.nlpclient.domain;
 
+import com.botscrew.botframework.domain.ArgumentKit;
+import com.botscrew.botframework.domain.SimpleArgumentKit;
 import lombok.Getter;
 
 import java.util.HashMap;
@@ -9,14 +11,18 @@ import java.util.Map;
 public class NlpResponse {
 
     private final String intent;
-    private final Map<Class, Object> parameters;
+    private final ArgumentKit argumentKit;
 
     public NlpResponse(String intent) {
         this.intent = intent;
-        parameters = new HashMap<>();
+        argumentKit = new SimpleArgumentKit();
     }
 
-    public void addParam(Object param) {
-        parameters.put(param.getClass(), param);
+    public String getIntent() {
+        return intent;
+    }
+
+    public ArgumentKit getArgumentKit() {
+        return argumentKit;
     }
 }

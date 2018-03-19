@@ -6,6 +6,9 @@ import ai.api.AIServiceContext;
 import ai.api.AIServiceException;
 import ai.api.model.AIRequest;
 import ai.api.model.AIResponse;
+import com.botscrew.botframework.domain.ArgumentKit;
+import com.botscrew.botframework.domain.SimpleArgumentWrapper;
+import com.botscrew.botframework.model.ArgumentType;
 import com.botscrew.nlpclient.domain.NlpResponse;
 import com.botscrew.nlpclient.provider.NlpEngineAccessor;
 import com.botscrew.nlpclient.provider.dialogflow.exception.DialogFlowException;
@@ -36,9 +39,17 @@ public class DialogFlowAccessor implements NlpEngineAccessor {
 
     private NlpResponse tryToSendQuery(AIRequest request, AIServiceContext aiServiceContext) {
         try {
-            AIResponse dfResponse = dataService.request(request, aiServiceContext);
-            NlpResponse response = new NlpResponse(dfResponse.getResult().getAction());
-            response.addParam(dfResponse);
+            AIResponse aiResponse = dataService.request(request, aiServiceContext);
+
+            NlpResponse response = new NlpResponse(aiResponse.getResult().getAction());
+            ArgumentKit argumentKit = response.getArgumentKit();
+            argumentKit.put(ArgumentType.NATIVE_NLP_RESPONSE, new SimpleArgumentWrapper(aiResponse));
+
+            aiResponse.getResult().getParameters()
+                    .forEach((key, value) -> {
+                        SimpleArgumentWrapper wrapper = new SimpleArgumentWrapper(value);
+                        argumentKit.put(key, wrapper);
+                    });
 
             return response;
         } catch (AIServiceException e) {
