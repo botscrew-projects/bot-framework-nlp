@@ -4,9 +4,10 @@ import com.botscrew.botframework.domain.argument.ArgumentType;
 import com.botscrew.botframework.domain.converter.ArgumentConverter;
 import com.botscrew.botframework.domain.converter.ConverterKey;
 import com.google.gson.JsonElement;
+import com.google.gson.JsonPrimitive;
 
-public class JsonElementToDoubleConverter implements ArgumentConverter<JsonElement> {
-    private static final ConverterKey KEY = ConverterKey.of(JsonElement.class, ArgumentType.PARAM_DOUBLE);
+public class JsonPrimitiveToLongConverter implements ArgumentConverter<JsonPrimitive> {
+    private static final ConverterKey KEY = ConverterKey.of(JsonPrimitive.class, ArgumentType.PARAM_LONG);
 
     @Override
     public ConverterKey getKey() {
@@ -14,7 +15,7 @@ public class JsonElementToDoubleConverter implements ArgumentConverter<JsonEleme
     }
 
     @Override
-    public Object convert(JsonElement jsonElement, Class<?> originalType) {
-        return jsonElement.getAsDouble();
+    public Object convert(JsonPrimitive jsonElement, Class<?> originalType) {
+        return jsonElement.getAsLong();
     }
 }

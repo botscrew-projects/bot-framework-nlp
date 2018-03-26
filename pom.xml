@@ -5,7 +5,7 @@
 
 	<groupId>com.botscrew</groupId>
 	<artifactId>nlp-client</artifactId>
-	<version>1.0.0-SNAPSHOT-11</version>
+	<version>1.0.0-SNAPSHOT-13</version>
 	<packaging>jar</packaging>
 
 	<name>nlp-client</name>

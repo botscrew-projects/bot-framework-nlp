@@ -29,10 +29,10 @@ public class DialogFlowV1Configuration {
 
     private void registrateConverters() {
         ArgumentsComposerFactory.putConverter(new JsonElementToComplexTypeConverter());
-        ArgumentsComposerFactory.putConverter(new JsonElementToDoubleConverter());
-        ArgumentsComposerFactory.putConverter(new JsonElementToIntegerConverter());
-        ArgumentsComposerFactory.putConverter(new JsonElementToLongConverter());
-        ArgumentsComposerFactory.putConverter(new JsonElementToStringConverter());
+        ArgumentsComposerFactory.putConverter(new JsonPrimitiveToDoubleConverter());
+        ArgumentsComposerFactory.putConverter(new JsonPrimitiveToIntegerConverter());
+        ArgumentsComposerFactory.putConverter(new JsonPrimitiveToLongConverter());
+        ArgumentsComposerFactory.putConverter(new JsonPrimitiveToStringConverter());
         ArgumentsComposerFactory.putConverter(new JsonObjectToComplexTypeConverter());
     }
 }
