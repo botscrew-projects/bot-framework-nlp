@@ -1,6 +1,7 @@
 package com.botscrew.nlpclient.provider;
 
-import com.botscrew.botframework.model.ChatUser;
+
+import com.botscrew.botframework.domain.user.ChatUser;
 
 public interface NlpClient {
 

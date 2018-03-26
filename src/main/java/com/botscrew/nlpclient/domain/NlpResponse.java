@@ -1,7 +1,7 @@
 package com.botscrew.nlpclient.domain;
 
-import com.botscrew.botframework.domain.ArgumentKit;
-import com.botscrew.botframework.domain.SimpleArgumentKit;
+import com.botscrew.botframework.domain.argument.kit.ArgumentKit;
+import com.botscrew.botframework.domain.argument.kit.SimpleArgumentKit;
 import lombok.Getter;
 
 import java.util.HashMap;

@@ -1,10 +1,7 @@
 package com.botscrew.nlpclient.provider.dialogflow.v1.config;
 
 import com.botscrew.botframework.container.IntentContainer;
-import com.botscrew.botframework.domain.ArgumentsComposerFactory;
-import com.botscrew.botframework.domain.converter.ArgumentConverter;
-import com.botscrew.botframework.domain.converter.ConverterKey;
-import com.botscrew.botframework.domain.converter.StringToDoubleConverter;
+import com.botscrew.botframework.domain.argument.composer.ArgumentsComposerFactory;
 import com.botscrew.nlpclient.provider.BotFrameworkNlpClient;
 import com.botscrew.nlpclient.provider.NlpClient;
 import com.botscrew.nlpclient.provider.NlpEngineAccessor;

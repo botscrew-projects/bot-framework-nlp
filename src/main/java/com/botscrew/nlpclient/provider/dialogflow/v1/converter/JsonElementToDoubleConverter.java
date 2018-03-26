@@ -1,8 +1,8 @@
 package com.botscrew.nlpclient.provider.dialogflow.v1.converter;
 
+import com.botscrew.botframework.domain.argument.ArgumentType;
 import com.botscrew.botframework.domain.converter.ArgumentConverter;
 import com.botscrew.botframework.domain.converter.ConverterKey;
-import com.botscrew.botframework.model.ArgumentType;
 import com.google.gson.JsonElement;
 
 public class JsonElementToDoubleConverter implements ArgumentConverter<JsonElement> {

@@ -1,8 +1,7 @@
 package com.botscrew.nlpclient.provider;
 
 import com.botscrew.botframework.container.IntentContainer;
-import com.botscrew.botframework.domain.SimpleArgumentKit;
-import com.botscrew.botframework.model.ChatUser;
+import com.botscrew.botframework.domain.user.ChatUser;
 import com.botscrew.nlpclient.domain.NlpResponse;
 import lombok.RequiredArgsConstructor;
 
