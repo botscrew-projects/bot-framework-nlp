@@ -2,24 +2,62 @@ package com.botscrew.nlpclient.provider;
 
 import com.botscrew.botframework.container.IntentContainer;
 import com.botscrew.botframework.domain.user.ChatUser;
+import com.botscrew.nlpclient.domain.NlpAccessorConfiguration;
 import com.botscrew.nlpclient.domain.NlpResponse;
-import lombok.RequiredArgsConstructor;
+import com.botscrew.nlpclient.interceptor.NlpInterceptor;
+import com.botscrew.nlpclient.interceptor.PreNlpResponseProcessingAction;
 
-@RequiredArgsConstructor
+import java.util.ArrayList;
+import java.util.List;
+
 public class BotFrameworkNlpClient implements NlpClient {
 
     private final NlpEngineAccessor nlpEngineAccessor;
     private final IntentContainer intentContainer;
+    private final List<NlpInterceptor<PreNlpResponseProcessingAction>> preNlpResponseProcessingInterceptors;
+
+    public BotFrameworkNlpClient(NlpEngineAccessor nlpEngineAccessor,
+                                 IntentContainer intentContainer,
+                                 List<NlpInterceptor<PreNlpResponseProcessingAction>> preNlpResponseProcessingInterceptors) {
+        this.nlpEngineAccessor = nlpEngineAccessor;
+        this.intentContainer = intentContainer;
+        this.preNlpResponseProcessingInterceptors = preNlpResponseProcessingInterceptors != null
+                ? preNlpResponseProcessingInterceptors
+                : new ArrayList<>();
+    }
+
 
     @Override
     public void query(ChatUser user, String query) {
         NlpResponse response = nlpEngineAccessor.query(query);
+        runPreNlpResponseProcessingActions(query, response);
+        intentContainer.process(user, response.getIntent(), response.getArgumentKit());
+    }
+
+    @Override
+    public void query(ChatUser user, String query, NlpAccessorConfiguration configuration) {
+        NlpResponse response = nlpEngineAccessor.query(query, configuration);
+        runPreNlpResponseProcessingActions(query, response);
         intentContainer.process(user, response.getIntent(), response.getArgumentKit());
     }
 
     @Override
     public void query(ChatUser user, String query, String sessionId) {
         NlpResponse response = nlpEngineAccessor.query(query, sessionId);
+        runPreNlpResponseProcessingActions(query, response);
         intentContainer.process(user, response.getIntent(), response.getArgumentKit());
+    }
+
+    @Override
+    public void query(ChatUser user, String query, String sessionId, NlpAccessorConfiguration configuration) {
+        NlpResponse response = nlpEngineAccessor.query(query, sessionId, configuration);
+        runPreNlpResponseProcessingActions(query, response);
+        intentContainer.process(user, response.getIntent(), response.getArgumentKit());
+    }
+
+    private void runPreNlpResponseProcessingActions(String query, NlpResponse response) {
+        for (NlpInterceptor<PreNlpResponseProcessingAction> interceptor : preNlpResponseProcessingInterceptors) {
+            interceptor.onAction(new PreNlpResponseProcessingAction(query, response.getIntent()));
+        }
     }
 }

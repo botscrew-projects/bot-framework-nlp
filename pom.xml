@@ -5,7 +5,7 @@
 
 	<groupId>com.botscrew</groupId>
 	<artifactId>nlp-client</artifactId>
-	<version>1.0.0-SNAPSHOT-13</version>
+	<version>1.0.0-SNAPSHOT-15</version>
 	<packaging>jar</packaging>
 
 	<name>nlp-client</name>
@@ -42,7 +42,7 @@
 		<dependency>
 			<groupId>com.botscrew</groupId>
 			<artifactId>bot-framework-spring-boot-starter</artifactId>
-			<version>1.0.0-SNAPSHOT-17</version>
+			<version>1.0.0-SNAPSHOT-20</version>
 			<scope>provided</scope>
 		</dependency>
 
