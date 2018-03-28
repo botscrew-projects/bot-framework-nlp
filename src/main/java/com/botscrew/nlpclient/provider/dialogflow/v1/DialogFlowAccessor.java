@@ -77,11 +77,13 @@ public class DialogFlowAccessor implements NlpEngineAccessor {
             argumentKit.put(ArgumentType.TEXT, new SimpleArgumentWrapper(query));
             argumentKit.put(ArgumentType.NATIVE_NLP_RESPONSE, new SimpleArgumentWrapper(aiResponse));
 
-            aiResponse.getResult().getParameters()
-                    .forEach((key, value) -> {
-                        SimpleArgumentWrapper wrapper = new SimpleArgumentWrapper(value);
-                        argumentKit.put(key, wrapper);
-                    });
+            if (aiResponse.getResult().getParameters() != null) {
+                aiResponse.getResult().getParameters()
+                        .forEach((key, value) -> {
+                            SimpleArgumentWrapper wrapper = new SimpleArgumentWrapper(value);
+                            argumentKit.put(key, wrapper);
+                        });
+            }
 
             return response;
         } catch (AIServiceException e) {
