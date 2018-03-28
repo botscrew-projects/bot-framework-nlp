@@ -2,7 +2,7 @@ package com.botscrew.nlpclient;
 
 import com.botscrew.botframework.container.IntentContainer;
 import com.botscrew.nlpclient.config.IntentContainerConfiguration;
-import com.botscrew.nlpclient.config.RestTemplateConfiguration;
+import com.botscrew.nlpclient.config.NlpClientRestTemplateConfiguration;
 import com.botscrew.nlpclient.interceptor.NlpInterceptor;
 import com.botscrew.nlpclient.interceptor.PreNlpResponseProcessingAction;
 import com.botscrew.nlpclient.provider.NlpClient;
@@ -21,7 +21,7 @@ import static org.mockito.Mockito.times;
 import static org.mockito.Mockito.verify;
 
 @RunWith(SpringRunner.class)
-@SpringBootTest(classes = {DialogFlowV1Configuration.class, RestTemplateConfiguration.class, IntentContainerConfiguration.class})
+@SpringBootTest(classes = {DialogFlowV1Configuration.class, NlpClientRestTemplateConfiguration.class, IntentContainerConfiguration.class})
 @TestPropertySource(properties = {"nlp.provider.dialog-flow.v1.client-token=1"})
 @Configuration
 public class PreNlpResponseProcessingInterceptorsTests {

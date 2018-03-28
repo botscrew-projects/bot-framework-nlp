@@ -18,7 +18,8 @@ import java.util.Arrays;
 import java.util.List;
 
 @Configuration
-public class RestTemplateConfiguration {
+@ConditionalOnMissingBean(value = RestTemplate.class)
+public class NlpClientRestTemplateConfiguration {
 
     @Bean
     @ConditionalOnMissingBean(value = ObjectMapper.class)
