@@ -72,7 +72,7 @@ public class DialogFlowAccessor implements NlpEngineAccessor {
         try {
             AIResponse aiResponse = aiDataService.request(new AIRequest(query), aiServiceContext);
 
-            NlpResponse response = new NlpResponse(aiResponse.getResult().getAction());
+            NlpResponse response = new NlpResponse(aiResponse.getResult().getMetadata().getIntentName());
             ArgumentKit argumentKit = response.getArgumentKit();
             argumentKit.put(ArgumentType.TEXT, new SimpleArgumentWrapper(query));
             argumentKit.put(ArgumentType.NATIVE_NLP_RESPONSE, new SimpleArgumentWrapper(aiResponse));
