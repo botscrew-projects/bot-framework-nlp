@@ -86,7 +86,8 @@ public void handlePhoneNumberInOnboarding(User user, @Param("number") String num
 
 ## Providers
 
-* DialogFlow v1
+* DialogFlow APIv1
+
 To work with DialogFlow API you need define property `nlp.provider.dialog-flow.v1.client-token`
 
 If you need get some specific data from original DialogFlow response you can get it like:
