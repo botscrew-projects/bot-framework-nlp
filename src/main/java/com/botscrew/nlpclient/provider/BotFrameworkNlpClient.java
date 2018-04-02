@@ -30,34 +30,34 @@ public class BotFrameworkNlpClient implements NlpClient {
     @Override
     public void query(ChatUser user, String query) {
         NlpResponse response = nlpEngineAccessor.query(query);
-        runPreNlpResponseProcessingActions(query, response);
+        runPreNlpResponseProcessingActions(user, query, response);
         intentContainer.process(user, response.getIntent(), response.getArgumentKit());
     }
 
     @Override
     public void query(ChatUser user, String query, NlpAccessorConfiguration configuration) {
         NlpResponse response = nlpEngineAccessor.query(query, configuration);
-        runPreNlpResponseProcessingActions(query, response);
+        runPreNlpResponseProcessingActions(user, query, response);
         intentContainer.process(user, response.getIntent(), response.getArgumentKit());
     }
 
     @Override
     public void query(ChatUser user, String query, String sessionId) {
         NlpResponse response = nlpEngineAccessor.query(query, sessionId);
-        runPreNlpResponseProcessingActions(query, response);
+        runPreNlpResponseProcessingActions(user, query, response);
         intentContainer.process(user, response.getIntent(), response.getArgumentKit());
     }
 
     @Override
     public void query(ChatUser user, String query, String sessionId, NlpAccessorConfiguration configuration) {
         NlpResponse response = nlpEngineAccessor.query(query, sessionId, configuration);
-        runPreNlpResponseProcessingActions(query, response);
+        runPreNlpResponseProcessingActions(user, query, response);
         intentContainer.process(user, response.getIntent(), response.getArgumentKit());
     }
 
-    private void runPreNlpResponseProcessingActions(String query, NlpResponse response) {
+    private void runPreNlpResponseProcessingActions(ChatUser user, String query, NlpResponse response) {
         for (NlpInterceptor<PreNlpResponseProcessingAction> interceptor : preNlpResponseProcessingInterceptors) {
-            interceptor.onAction(new PreNlpResponseProcessingAction(query, response.getIntent()));
+            interceptor.onAction(new PreNlpResponseProcessingAction(user, query, response.getIntent()));
         }
     }
 }
