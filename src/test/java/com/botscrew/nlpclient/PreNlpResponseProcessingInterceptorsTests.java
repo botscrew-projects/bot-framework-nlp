@@ -38,6 +38,4 @@ public class PreNlpResponseProcessingInterceptorsTests {
 
         verify(nlpResponseProcessingActionNlpInterceptor, times(1)).onAction(any());
     }
-
-
 }

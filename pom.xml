@@ -8,6 +8,13 @@
 	<version>1.0.0-RC1</version>
 	<packaging>jar</packaging>
 
+	<repositories>
+		<repository>
+			<id>MyGet</id>
+			<url>https://www.myget.org/F/bots-crew/maven</url>
+		</repository>
+	</repositories>
+
 	<name>nlp-client</name>
 	<description>Client for NLP support based on bot-framework</description>
 

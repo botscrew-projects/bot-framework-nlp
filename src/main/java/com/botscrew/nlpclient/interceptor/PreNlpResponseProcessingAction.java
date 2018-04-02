@@ -21,4 +21,8 @@ public class PreNlpResponseProcessingAction implements NlpAction {
     public String getIntentName() {
         return intentName;
     }
+
+    public ChatUser getUser() {
+        return user;
+    }
 }
