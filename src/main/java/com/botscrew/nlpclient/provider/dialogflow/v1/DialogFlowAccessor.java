@@ -6,6 +6,7 @@ import ai.api.AIServiceContext;
 import ai.api.AIServiceException;
 import ai.api.model.AIRequest;
 import ai.api.model.AIResponse;
+import ai.api.model.Metadata;
 import com.botscrew.botframework.domain.argument.ArgumentType;
 import com.botscrew.botframework.domain.argument.kit.ArgumentKit;
 import com.botscrew.botframework.domain.argument.wrapper.SimpleArgumentWrapper;
@@ -72,7 +73,9 @@ public class DialogFlowAccessor implements NlpEngineAccessor {
         try {
             AIResponse aiResponse = aiDataService.request(new AIRequest(query), aiServiceContext);
 
-            NlpResponse response = new NlpResponse(aiResponse.getResult().getMetadata().getIntentName());
+            String intent = getIntentName(aiResponse);
+            NlpResponse response = new NlpResponse(intent);
+
             ArgumentKit argumentKit = response.getArgumentKit();
             argumentKit.put(ArgumentType.TEXT, new SimpleArgumentWrapper(query));
             argumentKit.put(ArgumentType.NATIVE_NLP_RESPONSE, new SimpleArgumentWrapper(aiResponse));
@@ -88,6 +91,15 @@ public class DialogFlowAccessor implements NlpEngineAccessor {
             return response;
         } catch (AIServiceException e) {
             throw new DialogFlowException(e.getMessage(), e);
+        }
+    }
+
+    private String getIntentName(AIResponse aiResponse) {
+        Metadata metadata = aiResponse.getResult().getMetadata();
+        if (metadata != null && metadata.getIntentName() != null)
+            return metadata.getIntentName();
+        else {
+            return aiResponse.getResult().getAction();
         }
     }
 }
