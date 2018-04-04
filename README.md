@@ -5,6 +5,11 @@ It uses `IntentContainer` from Bot Framework. To read more check it here:
 
 https://gitlab.com/bots-crew/bot-framework/blob/boot-starter/README.md
 
+
+##### 1. [Getting started] (https://gitlab.com/bots-crew/nlp-client/blob/develop/README.md#getting-started)
+##### 2. [Usage] (https://gitlab.com/bots-crew/nlp-client/blob/develop/README.md#usage)
+##### 3. [Providers] (https://gitlab.com/bots-crew/nlp-client/blob/develop/README.md#providers)
+
 ## Getting Started
 
 * Add repository path to your build configuration
