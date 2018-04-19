@@ -5,7 +5,7 @@
 
 	<groupId>com.botscrew</groupId>
 	<artifactId>nlp-client-spring-boot-starter</artifactId>
-	<version>1.0.0-RC1</version>
+	<version>1.0.0</version>
 	<packaging>jar</packaging>
 
 	<repositories>
