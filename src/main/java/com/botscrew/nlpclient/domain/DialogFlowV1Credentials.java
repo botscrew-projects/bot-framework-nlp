@@ -2,10 +2,10 @@ package com.botscrew.nlpclient.domain;
 
 import java.util.Objects;
 
-public class DialogFlowConfiguration implements NlpAccessorConfiguration {
+public class DialogFlowV1Credentials implements NlpProviderCredentials {
     private final String clientToken;
 
-    public DialogFlowConfiguration(String clientToken) {
+    public DialogFlowV1Credentials(String clientToken) {
         this.clientToken = clientToken;
     }
 
@@ -17,7 +17,7 @@ public class DialogFlowConfiguration implements NlpAccessorConfiguration {
     public boolean equals(Object o) {
         if (this == o) return true;
         if (o == null || getClass() != o.getClass()) return false;
-        DialogFlowConfiguration that = (DialogFlowConfiguration) o;
+        DialogFlowV1Credentials that = (DialogFlowV1Credentials) o;
         return Objects.equals(clientToken, that.clientToken);
     }
 

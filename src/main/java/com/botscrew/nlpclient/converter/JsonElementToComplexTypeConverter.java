@@ -1,4 +1,4 @@
-package com.botscrew.nlpclient.provider.dialogflow.v1.converter;
+package com.botscrew.nlpclient.converter;
 
 import com.botscrew.botframework.domain.argument.ArgumentType;
 import com.botscrew.botframework.domain.converter.ArgumentConverter;

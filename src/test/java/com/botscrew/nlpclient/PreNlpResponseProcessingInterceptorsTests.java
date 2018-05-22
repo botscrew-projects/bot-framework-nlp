@@ -2,11 +2,11 @@ package com.botscrew.nlpclient;
 
 import com.botscrew.botframework.container.IntentContainer;
 import com.botscrew.nlpclient.config.IntentContainerConfiguration;
+import com.botscrew.nlpclient.config.NlpClientConfiguration;
 import com.botscrew.nlpclient.config.NlpClientRestTemplateConfiguration;
 import com.botscrew.nlpclient.interceptor.NlpInterceptor;
 import com.botscrew.nlpclient.interceptor.PreNlpResponseProcessingAction;
 import com.botscrew.nlpclient.provider.NlpClient;
-import com.botscrew.nlpclient.provider.dialogflow.v1.config.DialogFlowV1Configuration;
 import org.junit.Test;
 import org.junit.runner.RunWith;
 import org.springframework.beans.factory.annotation.Autowired;
@@ -21,8 +21,11 @@ import static org.mockito.Mockito.times;
 import static org.mockito.Mockito.verify;
 
 @RunWith(SpringRunner.class)
-@SpringBootTest(classes = {DialogFlowV1Configuration.class, NlpClientRestTemplateConfiguration.class, IntentContainerConfiguration.class})
-@TestPropertySource(properties = {"nlp.provider.dialog-flow.v1.client-token=1"})
+@SpringBootTest(classes = {NlpClientConfiguration.class, NlpClientRestTemplateConfiguration.class, IntentContainerConfiguration.class})
+@TestPropertySource(properties = {
+        "nlp.provider.dialog-flow.v1.client-token=1",
+        "nlp.provider.dialog-flow.v2.access-token=1",
+        "nlp.provider.dialog-flow.v2.project-id=1"})
 @Configuration
 public class PreNlpResponseProcessingInterceptorsTests {
     @MockBean

@@ -4,9 +4,6 @@ import com.botscrew.botframework.domain.argument.kit.ArgumentKit;
 import com.botscrew.botframework.domain.argument.kit.SimpleArgumentKit;
 import lombok.Getter;
 
-import java.util.HashMap;
-import java.util.Map;
-
 @Getter
 public class NlpResponse {
 

@@ -2,7 +2,7 @@ package com.botscrew.nlpclient.provider;
 
 import com.botscrew.botframework.container.IntentContainer;
 import com.botscrew.botframework.domain.user.ChatUser;
-import com.botscrew.nlpclient.domain.NlpAccessorConfiguration;
+import com.botscrew.nlpclient.domain.NlpProviderCredentials;
 import com.botscrew.nlpclient.domain.NlpResponse;
 import com.botscrew.nlpclient.interceptor.NlpInterceptor;
 import com.botscrew.nlpclient.interceptor.PreNlpResponseProcessingAction;
@@ -35,7 +35,7 @@ public class BotFrameworkNlpClient implements NlpClient {
     }
 
     @Override
-    public void query(ChatUser user, String query, NlpAccessorConfiguration configuration) {
+    public void query(ChatUser user, String query, NlpProviderCredentials configuration) {
         NlpResponse response = nlpEngineAccessor.query(query, configuration);
         runPreNlpResponseProcessingActions(user, query, response);
         intentContainer.process(user, response.getIntent(), response.getArgumentKit());
@@ -49,7 +49,7 @@ public class BotFrameworkNlpClient implements NlpClient {
     }
 
     @Override
-    public void query(ChatUser user, String query, String sessionId, NlpAccessorConfiguration configuration) {
+    public void query(ChatUser user, String query, String sessionId, NlpProviderCredentials configuration) {
         NlpResponse response = nlpEngineAccessor.query(query, sessionId, configuration);
         runPreNlpResponseProcessingActions(user, query, response);
         intentContainer.process(user, response.getIntent(), response.getArgumentKit());

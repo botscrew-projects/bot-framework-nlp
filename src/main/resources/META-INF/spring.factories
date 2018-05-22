@@ -1,2 +1,3 @@
-org.springframework.boot.autoconfigure.EnableAutoConfiguration=com.botscrew.nlpclient.config.NlpClientRestTemplateConfiguration
-org.springframework.boot.autoconfigure.EnableAutoConfiguration=com.botscrew.nlpclient.provider.dialogflow.v1.config.DialogFlowV1Configuration
+org.springframework.boot.autoconfigure.EnableAutoConfiguration=\
+  com.botscrew.nlpclient.config.NlpClientRestTemplateConfiguration,\
+  com.botscrew.nlpclient.config.NlpClientConfiguration

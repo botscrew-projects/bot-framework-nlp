@@ -1,10 +1,6 @@
 package com.botscrew.nlpclient.config;
 
-import com.botscrew.botframework.container.IntentContainer;
-import com.botscrew.botframework.domain.method.group.IntentHandlingMethodGroup;
-import com.botscrew.nlpclient.PreNlpResponseProcessingInterceptorsTests;
 import com.botscrew.nlpclient.domain.NlpResponse;
-import com.botscrew.nlpclient.interceptor.NlpInterceptor;
 import com.botscrew.nlpclient.provider.NlpEngineAccessor;
 import com.botscrew.nlpclient.provider.dialogflow.v1.DialogFlowAccessor;
 import org.mockito.Mockito;
@@ -17,7 +13,7 @@ import static org.mockito.Mockito.when;
 
 @TestConfiguration
 public class IntentContainerConfiguration {
-    @Bean
+    @Bean("defaultNlpEngineAccessor")
     @Primary
     public NlpEngineAccessor nlpEngineAccessor() {
         DialogFlowAccessor mock = Mockito.mock(DialogFlowAccessor.class);

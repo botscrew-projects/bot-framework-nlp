@@ -10,8 +10,8 @@ import ai.api.model.Metadata;
 import com.botscrew.botframework.domain.argument.ArgumentType;
 import com.botscrew.botframework.domain.argument.kit.ArgumentKit;
 import com.botscrew.botframework.domain.argument.wrapper.SimpleArgumentWrapper;
-import com.botscrew.nlpclient.domain.DialogFlowConfiguration;
-import com.botscrew.nlpclient.domain.NlpAccessorConfiguration;
+import com.botscrew.nlpclient.domain.DialogFlowV1Credentials;
+import com.botscrew.nlpclient.domain.NlpProviderCredentials;
 import com.botscrew.nlpclient.domain.NlpResponse;
 import com.botscrew.nlpclient.provider.NlpEngineAccessor;
 import com.botscrew.nlpclient.provider.dialogflow.exception.DialogFlowException;
@@ -23,15 +23,15 @@ import java.util.Map;
 public class DialogFlowAccessor implements NlpEngineAccessor {
 
     private AIDataService defaultAiDataService;
-    private final Map<DialogFlowConfiguration, AIDataService> aiDataServices;
+    private final Map<DialogFlowV1Credentials, AIDataService> aiDataServices;
 
-    public DialogFlowAccessor(NlpAccessorConfiguration nlpAccessorConfiguration) {
-        DialogFlowConfiguration dialogFlowConfiguration = (DialogFlowConfiguration) nlpAccessorConfiguration;
-        if (dialogFlowConfiguration.getClientToken() == null || dialogFlowConfiguration.getClientToken().isEmpty()) {
+    public DialogFlowAccessor(NlpProviderCredentials nlpProviderCredentials) {
+        DialogFlowV1Credentials dialogFlowV1Credentials = (DialogFlowV1Credentials) nlpProviderCredentials;
+        if (dialogFlowV1Credentials.getClientToken() == null || dialogFlowV1Credentials.getClientToken().isEmpty()) {
             throw new DialogFlowException("Client access token is not present");
         }
 
-        AIConfiguration configuration = new AIConfiguration(dialogFlowConfiguration.getClientToken());
+        AIConfiguration configuration = new AIConfiguration(dialogFlowV1Credentials.getClientToken());
         defaultAiDataService = new AIDataService(configuration);
         aiDataServices = new HashMap<>();
     }
@@ -42,8 +42,8 @@ public class DialogFlowAccessor implements NlpEngineAccessor {
     }
 
     @Override
-    public NlpResponse query(String query, NlpAccessorConfiguration nlpAccessorConfiguration) {
-        DialogFlowConfiguration configuration = (DialogFlowConfiguration) nlpAccessorConfiguration;
+    public NlpResponse query(String query, NlpProviderCredentials nlpProviderCredentials) {
+        DialogFlowV1Credentials configuration = (DialogFlowV1Credentials) nlpProviderCredentials;
         AIDataService aiDataService = createIfNotExistsAndGet(configuration);
         return tryToSendQuery(query, null, aiDataService);
     }
@@ -54,13 +54,13 @@ public class DialogFlowAccessor implements NlpEngineAccessor {
     }
 
     @Override
-    public NlpResponse query(String query, String sessionId, NlpAccessorConfiguration nlpAccessorConfiguration) {
-        DialogFlowConfiguration configuration = (DialogFlowConfiguration) nlpAccessorConfiguration;
+    public NlpResponse query(String query, String sessionId, NlpProviderCredentials nlpProviderCredentials) {
+        DialogFlowV1Credentials configuration = (DialogFlowV1Credentials) nlpProviderCredentials;
         AIDataService aiDataService = createIfNotExistsAndGet(configuration);
         return tryToSendQuery(query, new AIServiceContextImpl(sessionId), aiDataService);
     }
 
-    private AIDataService createIfNotExistsAndGet(DialogFlowConfiguration configuration) {
+    private AIDataService createIfNotExistsAndGet(DialogFlowV1Credentials configuration) {
         return aiDataServices.computeIfAbsent(configuration,
                 k -> new AIDataService(new AIConfiguration(configuration.getClientToken())));
     }
@@ -78,7 +78,7 @@ public class DialogFlowAccessor implements NlpEngineAccessor {
 
             ArgumentKit argumentKit = response.getArgumentKit();
             argumentKit.put(ArgumentType.TEXT, new SimpleArgumentWrapper(query));
-            argumentKit.put(ArgumentType.NATIVE_NLP_RESPONSE, new SimpleArgumentWrapper(aiResponse));
+            argumentKit.put(ArgumentType.ORIGINAL_RESPONSE, new SimpleArgumentWrapper(aiResponse));
 
             if (aiResponse.getResult().getParameters() != null) {
                 aiResponse.getResult().getParameters()

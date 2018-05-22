@@ -5,7 +5,7 @@
 
 	<groupId>com.botscrew</groupId>
 	<artifactId>nlp-client-spring-boot-starter</artifactId>
-	<version>1.0.0</version>
+	<version>1.1.0</version>
 	<packaging>jar</packaging>
 
 	<repositories>
@@ -45,14 +45,6 @@
 			<scope>compile</scope>
 		</dependency>
 
-
-		<dependency>
-			<groupId>com.botscrew</groupId>
-			<artifactId>bot-framework-spring-boot-starter</artifactId>
-			<version>1.0.0-RC1</version>
-			<scope>compile</scope>
-		</dependency>
-
 		<dependency>
 			<groupId>org.springframework.boot</groupId>
 			<artifactId>spring-boot-configuration-processor</artifactId>
@@ -69,6 +61,20 @@
 			<artifactId>spring-boot-starter-test</artifactId>
 			<scope>test</scope>
 		</dependency>
+
+		<dependency>
+			<groupId>com.botscrew</groupId>
+			<artifactId>bot-framework-spring-boot-starter</artifactId>
+			<version>1.0.0</version>
+			<scope>compile</scope>
+		</dependency>
 	</dependencies>
+
+	<distributionManagement>
+		<repository>
+			<id>MyGet</id>
+			<url>https://www.myget.org/F/bots-crew/maven</url>
+		</repository>
+	</distributionManagement>
 
 </project>
