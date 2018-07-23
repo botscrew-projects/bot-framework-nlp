@@ -16,10 +16,12 @@
 
 package com.botscrew.nlpclient.exception;
 
+import com.botscrew.botframework.exception.BotFrameworkException;
+
 /**
  * Exception which happened inside nlp module
  */
-public class NlpClientException extends RuntimeException {
+public class NlpClientException extends BotFrameworkException {
 
     public NlpClientException() {
         super();
