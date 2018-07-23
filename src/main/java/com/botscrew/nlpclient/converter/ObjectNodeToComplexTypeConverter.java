@@ -19,7 +19,7 @@ package com.botscrew.nlpclient.converter;
 import com.botscrew.botframework.domain.argument.ArgumentType;
 import com.botscrew.botframework.domain.converter.ArgumentConverter;
 import com.botscrew.botframework.domain.converter.ConverterKey;
-import com.botscrew.botframework.exception.ProcessorInnerException;
+import com.botscrew.botframework.exception.ConvertException;
 import com.fasterxml.jackson.core.JsonProcessingException;
 import com.fasterxml.jackson.databind.DeserializationFeature;
 import com.fasterxml.jackson.databind.ObjectMapper;
@@ -44,7 +44,7 @@ public class ObjectNodeToComplexTypeConverter implements ArgumentConverter<Objec
         try {
             return OBJECT_MAPPER.treeToValue(jsonNode, originalType);
         } catch (JsonProcessingException e) {
-            throw new ProcessorInnerException("Cannot convert JsonNode to" + originalType.getName());
+            throw new ConvertException("Cannot convert JsonNode to" + originalType.getName());
         }
     }
 }
