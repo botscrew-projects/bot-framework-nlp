@@ -1,38 +1,25 @@
 ## NLP Client Spring Boot Starter
 
 NLP Client project provides integration with various nlp clients (only dialog-flow for now). It is based on Bot Framework.
-It uses [IntentContainer](https://gitlab.com/bots-crew/bot-framework/blob/boot-starter/src/main/java/com/botscrew/botframework/container/IntentContainer.java)
+It uses [IntentContainer](https://github.com/botscrew-projects/bot-framework-core/blob/boot-starter/src/main/java/com/botscrew/botframework/container/IntentContainer.java)
 from Bot Framework. To read more about it, check the link below:
 
-https://gitlab.com/bots-crew/bot-framework/blob/boot-starter/README.md
+https://github.com/botscrew-projects/bot-framework-core
 
-##### 1. [Getting started] (https://gitlab.com/bots-crew/nlp-client/blob/develop/README.md#getting-started)
-##### 2. [Usage] (https://gitlab.com/bots-crew/nlp-client/blob/develop/README.md#usage)
-##### 3. [Providers] (https://gitlab.com/bots-crew/nlp-client/blob/develop/README.md#providers)
 
 ## Getting Started
 
-* Add a repository path to your build configuration
-
-```xml
-<repositories>
-    <repository>
-        <id>MyGet</id>
-        <url>https://www.myget.org/F/bots-crew/maven</url>
-    </repository>
-</repositories>
-```
 * Add `NLP Client` dependency
 
 ```xml
 <dependency>
     <groupId>com.botscrew</groupId>
-    <artifactId>nlp-client-spring-boot-starter</artifactId>
-    <version>${nlp-client.version}</version>
+    <artifactId>bot-framework-nlp-spring-boot-starter</artifactId>
+    <version>1.1.2</version>
 </dependency>
 ```
 
-NLP Client already depends on the [Bot Framework](https://gitlab.com/bots-crew/bot-framework/tree/boot-starter) so you don't need to add
+NLP Client already depends on the [Bot Framework](https://github.com/botscrew-projects/bot-framework-core) so you don't need to add
 it to project by yourself.
 
 ### Usage
